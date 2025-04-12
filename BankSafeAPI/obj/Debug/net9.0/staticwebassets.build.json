@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "a/GZj95CAP49P3fuEL4T/07r6e9QLnimIHDl+ntkXMc=",
+  "Source": "BankSafeAPI",
+  "BasePath": "_content/BankSafeAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
