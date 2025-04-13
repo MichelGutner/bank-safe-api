@@ -2,9 +2,9 @@ namespace BankSafeAPI.Entities
 {
     public class BankAccount
     {
-        private Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; private set; } = Guid.NewGuid();
         public string AccountNumber { get; set; }
-        public decimal Balance { get; set; } = decimal.Zero;
+        // public decimal Balance { get; set; }
         public Guid UserId { get; private set; }
 
         public BankAccount(string accountNumber, Guid userId)
@@ -19,7 +19,7 @@ namespace BankSafeAPI.Entities
                 throw new ArgumentException(
                     "Para efetuar um deposito o valor precisa ser maior que 0"
                 );
-            Balance += amount;
+            // Balance += amount;
         }
 
         public void WithDraw(decimal amount)
@@ -28,9 +28,9 @@ namespace BankSafeAPI.Entities
                 throw new ArgumentException(
                     "Para efetuar um saque o valor precisa ser maior que 0"
                 );
-            if (amount > Balance)
-                throw new InvalidOperationException("Saldo insuficiente");
-            Balance -= amount;
+            // if (amount > Balance)
+            //     throw new InvalidOperationException("Saldo insuficiente");
+            // Balance -= amount;
         }
     }
 }

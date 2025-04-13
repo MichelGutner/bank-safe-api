@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BankSafeAPI.Entities
 {
+    [Table("Users")]
     public class User
     {
         public Guid Id { get; private set; } = Guid.NewGuid();
@@ -11,7 +14,6 @@ namespace BankSafeAPI.Entities
         public User(string name, string cpf)
         {
             if (name == string.Empty) throw new ArgumentException("Nome inválido");
-            
             Name = name;
             Cpf = FormatCpf(cpf);
 

@@ -1,0 +1,19 @@
+# Use the official SQL Server 2022 image
+FROM mcr.microsoft.com/mssql/server:2022-latest
+
+ENV ACCEPT_EULA=Y
+ENV MSSQL_SA_PASSWORD=@banksafeApi#2
+ENV MSSQL_PID=Developer
+
+EXPOSE 1433
+
+COPY ./Data/database.sql /var/opt/mssql/database.sql
+
+CMD /bin/bash -c \
+    "echo 'Starting SQL Server...' && \
+    /opt/mssql/bin/sqlservr & \
+    sleep 15 && \
+    echo 'Running initialization script...' && \
+    /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P @banksafeApi#2 -i /var/opt/mssql/database.sql && \
+    echo 'Initialization complete' && \
+    wait"

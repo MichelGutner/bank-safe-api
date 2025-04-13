@@ -8,6 +8,6 @@ namespace BankSafeAPI.Data
         public AppDbContext(DbContextOptions options)
             : base(options) { }
 
-        public DbSet<BankAccount> BankAccounts { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

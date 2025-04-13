@@ -1,0 +1,19 @@
+IF NOT EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = 'BankSafeDB')
+BEGIN
+    CREATE DATABASE BankSafeDB;
+END
+GO
+
+USE BankSafeDB;
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Users')
+BEGIN
+    CREATE TABLE Users (
+        Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+        Name NVARCHAR(50) NOT NULL,
+        Cpf NVARCHAR(14) NOT NULL UNIQUE,
+        CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
+    );
+END
+GO
