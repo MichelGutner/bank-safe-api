@@ -10,10 +10,7 @@ EXPOSE 1433
 COPY ./Data/database.sql /var/opt/mssql/database.sql
 
 CMD /bin/bash -c \
-    "echo 'Starting SQL Server...' && \
-    /opt/mssql/bin/sqlservr & \
-    sleep 15 && \
-    echo 'Running initialization script...' && \
+    "/opt/mssql/bin/sqlservr & \
+    sleep 15 && \ 
     /opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P @banksafeApi#2 -i /var/opt/mssql/database.sql && \
-    echo 'Initialization complete' && \
     wait"

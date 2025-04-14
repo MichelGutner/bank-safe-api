@@ -162,3 +162,4 @@
 /Users/michelgutner/Desktop/myProjects/BankSafeAPI/BankSafeAPI/bin/Debug/net9.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
 /Users/michelgutner/Desktop/myProjects/BankSafeAPI/BankSafeAPI/bin/Debug/net9.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
 /Users/michelgutner/Desktop/myProjects/BankSafeAPI/BankSafeAPI/bin/Debug/net9.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/michelgutner/Desktop/myProjects/BankSafeAPI/BankSafeAPI/bin/Debug/net9.0/BCrypt.Net-Next.dll
