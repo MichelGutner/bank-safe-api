@@ -30,7 +30,6 @@ namespace BankSafeAPI.Controllers
             try
             {
                 await _userService.Create(user);
-                Console.WriteLine("testando");
                 return CreatedAtAction(nameof(Get), user);
             }
             catch (Exception)
