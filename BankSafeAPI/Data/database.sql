@@ -36,3 +36,17 @@ BEGIN
     );
 END
 GO
+
+IF NOT EXISTS(SELECT * FROM sys.tables WHERE name = 'Transactions')
+BEGIN
+    CREATE TABLE TRANSACTIONS (
+        TransactionId INT PRIMARY KEY IDENTITY(1, 1),
+        AccountId INT,
+        TransactionType VARCHAR(50) NOT NULL,
+        Value DECIMAL(19, 4) NOT NULL,
+        CreatedAt DATETIME2 NOT NULL DEFAULT GETDATE(),
+        Description VARCHAR(255),
+        FOREIGN KEY (AccountId) REFERENCES Accounts(AccountId)
+    )
+END
+GO
