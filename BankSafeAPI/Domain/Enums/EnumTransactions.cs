@@ -1,6 +1,6 @@
 namespace BankSafeAPI.Domain.Enums
 {
-    public class EnumTransactions
+    public class EnumTransactionType
     {
         public const string Deposit = "deposit";
         public const string Withdraw = "withdraw";
