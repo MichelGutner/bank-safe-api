@@ -46,13 +46,16 @@ namespace BankSafeAPI.Services
 
         public async Task<User?> GetUser(string CPF)
         {
-            User? user = await _context.Users.FirstOrDefaultAsync(user => user.CPF == CPF);
-            if (user != null)
-            {
-                var accounts = _context.Accounts.Where(a => a.UserId == user.UserId).ToList();
-                if (accounts != null)
-                    user.Accounts = accounts;
-            }
+            if (!_context.Users.Any())
+                throw new InvalidOperationException("Nenhum usuário encontrado.");
+
+            User? user =
+                await _context.Users.FirstOrDefaultAsync(user => user.CPF == CPF)
+                ?? throw new ArgumentException("Usuário não encontrado para este CPF");
+
+            user.Accounts = await _context
+                .Accounts.Where(a => a.UserId == user.UserId)
+                .ToListAsync();
 
             return user;
         }

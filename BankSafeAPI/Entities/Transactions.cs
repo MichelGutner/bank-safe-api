@@ -4,16 +4,16 @@ using BankSafeAPI.Domain.Enums;
 
 namespace BankSafeAPI.Entities
 {
-    public class Transactions
+    public class Transaction
     {
         [Key]
         public int TransactionId { get; set; }
-        public required EnumTransactionType TransactionType { get; set; }
+        public required string TransactionType { get; set; }
         public required decimal Amount { get; set; }
         public string? Description { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         [ForeignKey("AccountId")]
-        public int? Account { get; set; }
+        public int? AccountId { get; set; }
     }
 }

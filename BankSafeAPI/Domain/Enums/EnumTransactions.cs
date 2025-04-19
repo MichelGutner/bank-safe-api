@@ -1,10 +1,19 @@
+using System.Runtime.Serialization;
+
 namespace BankSafeAPI.Domain.Enums
 {
-    public class EnumTransactionType
+    public enum EnumTransactionType
     {
-        public const string Deposit = "deposit";
-        public const string Withdraw = "withdraw";
-        public const string Transafer = "transfer";
-        public const string Payment = "payment";
+        [EnumMember(Value = "deposit")]
+        Deposit,
+
+        [EnumMember(Value = "withdraw")]
+        Withdraw,
+
+        [EnumMember(Value = "transfer")]
+        Transfer,
+
+        [EnumMember(Value = "payment")]
+        Payment,
     }
 }
