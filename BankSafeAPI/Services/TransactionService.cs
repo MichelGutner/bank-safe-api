@@ -1,9 +1,10 @@
 using BankSafeAPI.Data;
 using BankSafeAPI.Domain.Dto.Input;
-using BankSafeAPI.Domain.Dto.Output;
 using BankSafeAPI.Entities;
+using BankSafeAPI.Infrastructure.Shared;
 using BankSafeAPI.Interface;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BankSafeAPI.Services
 {
@@ -44,6 +45,42 @@ namespace BankSafeAPI.Services
                 throw new ArgumentException($"Transação com id: {id} não encontrada");
 
             return transaction;
+        }
+
+        public async Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsInputDto filters)
+        {
+            var predicate = PredicateBuilder.True<Transaction>();
+
+            if (filters.AccountId.HasValue)
+            {
+                predicate = predicate.And(t => t.AccountId == filters.AccountId);
+            }
+            if (filters.MinAmount.HasValue)
+            {
+                predicate = predicate.And(t => t.Amount >= filters.MinAmount);
+            }
+            if (filters.MaxAmount.HasValue)
+            {
+                predicate = predicate.And(t => t.Amount <= filters.MaxAmount);
+            }
+            if (!filters.TransactionType.IsNullOrEmpty())
+            {
+                predicate = predicate.And(t => t.TransactionType == filters.TransactionType);
+            }
+            if (filters.StartDate.HasValue)
+            {
+                predicate = predicate.And(t =>
+                    DateOnly.FromDateTime(t.CreatedAt) >= filters.StartDate
+                );
+            }
+            if (filters.EndDate.HasValue)
+            {
+                predicate = predicate.And(t =>
+                    DateOnly.FromDateTime(t.CreatedAt) <= filters.EndDate
+                );
+            }
+
+            return await _context.Transactions.Where(predicate).ToListAsync();
         }
     }
 }

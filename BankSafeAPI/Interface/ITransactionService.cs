@@ -8,5 +8,6 @@ namespace BankSafeAPI.Interface
     {
         Task Create(CreateTransactionInputDto query);
         Task<Transaction> Get(int id);
+        Task<IEnumerable<Transaction>> GetTransactions(GetTransactionsInputDto filters);
     }
 }

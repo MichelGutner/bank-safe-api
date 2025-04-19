@@ -76,5 +76,15 @@ namespace BankSafeAPI.Controllers
             var transaction = await _transactionService.Get(id);
             return Ok(transaction);
         }
+
+        [Route("Transaction")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions(
+            [FromQuery] GetTransactionsInputDto filters
+        )
+        {
+            var transactions = await _transactionService.GetTransactions(filters);
+            return Ok(transactions);
+        }
     }
 }
