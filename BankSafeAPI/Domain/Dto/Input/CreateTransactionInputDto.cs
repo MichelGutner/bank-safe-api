@@ -11,8 +11,11 @@ namespace BankSafeAPI.Domain.Dto.Input
         [Required(ErrorMessage = "O número da conta e obrigatório.")]
         public required int AccountId { get; set; }
 
-        [Required(ErrorMessage = "O tipo de conta e obrigatório.")]
-        [EnumDataType(typeof(EnumTransactionType))]
+        [Required(ErrorMessage = "O tipo de transação e obrigatório.")]
+        [RegularExpression(
+            @"^(deposit|withdraw|transfer|payment)$",
+            ErrorMessage = "O tipo de transação deve ser 'deposit' | 'withdraw' | 'transfer' | 'payment'."
+        )]
         public required string TransactionType { get; set; }
     }
 }
